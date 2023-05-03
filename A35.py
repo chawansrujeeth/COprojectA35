@@ -43,7 +43,23 @@ def opcode(c):
         return '11111'
     elif c == 'hlt':
         return '11010'
-
+def reg_code(c):
+    if c == 'R0':
+        return '000'
+    elif c == 'R1':
+        return '001'
+    elif c == 'R2':
+        return '010'
+    elif c == 'R3':
+        return '011'
+    elif c == 'R4':
+        return '100'
+    elif c == 'R5':
+        return '101'
+    elif c == 'R6':
+        return '110'
+    elif c == 'flag':
+        return '111'
 #code to convert inst to array
 with open('instructions', 'r') as f:
     lines = f.readlines()
@@ -65,9 +81,13 @@ while 1:
         break
     elif lines[num][0] == 'var':
         variables.append(lines[num][1])
-    elif lines[num][0] == 'add':
-        code += opcode('add')
-        
+    elif lines[num][0] == 'add' or lines[num][0] == 'sub' :
+        code += opcode(lines[num][0])
+        code += '00'
+        code += reg_code(lines[num][1])
+        code += reg_code(lines[num][2])
+        code += reg_code(lines[num][3])
+        solutions.append(code)
     num += 1
 
 print(solutions)
