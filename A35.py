@@ -60,7 +60,7 @@ def reg_code(c):
         return '110'
     elif c == 'flag':
         return '111'
-#code to convert inst to array
+#code to convert inst to arr
 with open('instructions', 'r') as f:
     lines = f.readlines()
 for i in range(0,len(lines) - 1):
